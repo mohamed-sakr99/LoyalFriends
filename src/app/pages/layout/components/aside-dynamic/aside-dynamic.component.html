@@ -1,0 +1,59 @@
+<mat-toolbar>
+  <button mat-icon-button *ngIf="sidenav.mode === 'side'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+      close
+    </mat-icon>
+  </button>
+  Loyal Friends
+</mat-toolbar>
+
+
+<mat-sidenav-container>
+
+  <mat-sidenav class="mat-elevation-z8" #sidenav="matSidenav" hasBackdrop="false" mode="side">
+    <mat-divider></mat-divider>
+    <div class="text-left mt-2">reports</div>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/reports/total-reports" routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{exact: true}">
+      total reports
+    </button>
+    <button mat-button class="menu-button" routerLink="/reports/part-reports">
+      partial reports
+    </button>
+    <mat-divider></mat-divider>
+    <div class="text-left mt-2">adsl & fixed line</div>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/adsl-fixed/add" routerLinkActive="active-link">
+      add customer
+    </button>
+    <button mat-button class="menu-button" routerLink="/adsl-fixed/adsl-cust-list" routerLinkActive="active-link">
+      adsl customer list
+    </button>
+    <button mat-button class="menu-button" routerLink="/adsl-fixed/fixed-cust-list" routerLinkActive="active-link">
+      fixed customer list
+    </button>
+    <button mat-button class="menu-button" routerLink="/adsl-fixed/adsl-fixed-cust-list" routerLinkActive="active-link">
+      adsl & fixed customer list
+    </button>
+    <mat-divider></mat-divider>
+    <div class="text-left mt-2">corporate </div>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" routerLink="/corp-cust/add-corp-cust">
+      add corporate customer
+    </button>
+    <button mat-button class="menu-button" routerLink="/corp-cust/corp-cust-list">
+      corporate customer list
+    </button>
+    <mat-divider></mat-divider>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

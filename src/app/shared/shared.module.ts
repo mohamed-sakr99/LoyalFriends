@@ -16,6 +16,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -25,6 +27,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSidenavModule,
@@ -43,6 +47,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSidenavModule,

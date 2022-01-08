@@ -4,30 +4,15 @@
       <div class="d-flex justify-content-start">
         <span class="inline-block choose-cust m-2">choose cutomer</span>
         <div class="m-3">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-          />
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
           <label class="cust-label" for="flexRadioDefault1"> adsl cust </label>
         </div>
         <div class="m-3">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-          />
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
           <label class="cust-label" for="flexRadioDefault1"> fixed cust </label>
         </div>
         <div class="m-3">
-          <input
-            class="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="flexRadioDefault1"
-          />
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
           <label class="cust-label" for="flexRadioDefault1">
             adsl & fixed cust
           </label>
@@ -37,12 +22,7 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-5">
           <label class="cust-label">name</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="name"
-            formControlName="name"
-          />
+          <input type="text" class="form-control" formControlName="name" formControlName="name" />
           <span *ngIf="name?.invalid && name?.touched && !name?.dirty">
             this field is required
           </span>
@@ -51,16 +31,10 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-5">
           <label class="cust-label">national id</label>
-          <input
-            type="number"
-            class="form-control"
-            formControlName="nationalId"
-          />
-          <span
-            *ngIf="
+          <input type="number" class="form-control" formControlName="nationalId" />
+          <span *ngIf="
               nationalId?.invalid && nationalId?.touched && !nationalId?.dirty
-            "
-          >
+            ">
             this field must be number
           </span>
         </div>
@@ -77,16 +51,10 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-5">
           <label class="cust-label">fixed line</label>
-          <input
-            type="number"
-            class="form-control"
-            formControlName="fixedLine"
-          />
-          <span
-            *ngIf="
+          <input type="number" class="form-control" formControlName="fixedLine" />
+          <span *ngIf="
               fixedLine?.invalid && fixedLine?.touched && !fixedLine?.dirty
-            "
-          >
+            ">
             this field must be number
           </span>
         </div>
@@ -104,11 +72,9 @@
         <div class="mt-5">
           <label class="cust-label">governate</label>
           <input type="text" class="form-control" formControlName="governate" />
-          <span
-            *ngIf="
+          <span *ngIf="
               governate?.invalid && governate?.touched && !governate?.dirty
-            "
-          >
+            ">
             this field is required
           </span>
         </div>
@@ -125,18 +91,12 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-5">
           <label class="cust-label">service provider</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="serviceProvider"
-          />
-          <span
-            *ngIf="
+          <input type="text" class="form-control" formControlName="serviceProvider" />
+          <span *ngIf="
               serviceProvider?.invalid &&
               serviceProvider?.touched &&
               !serviceProvider?.dirty
-            "
-          >
+            ">
             this field is required
           </span>
         </div>
@@ -153,18 +113,12 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-5">
           <label class="cust-label">service quota</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="serviceQuota"
-          />
-          <span
-            *ngIf="
+          <input type="text" class="form-control" formControlName="serviceQuota" />
+          <span *ngIf="
               serviceQuota?.invalid &&
               serviceQuota?.touched &&
               !serviceQuota?.dirty
-            "
-          >
+            ">
             this field is required
           </span>
         </div>
@@ -181,18 +135,12 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-5">
           <label class="cust-label">contact date</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="contactDate"
-          />
-          <span
-            *ngIf="
+          <input type="text" class="form-control" formControlName="contactDate" />
+          <span *ngIf="
               contactDate?.invalid &&
               contactDate?.touched &&
               !contactDate?.dirty
-            "
-          >
+            ">
             this field is required
           </span>
         </div>

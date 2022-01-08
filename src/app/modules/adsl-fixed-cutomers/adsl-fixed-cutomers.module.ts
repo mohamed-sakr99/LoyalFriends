@@ -8,18 +8,13 @@ import { FixedlineCutomerListComponent } from './fixedline-cutomer-list/fixedlin
 import { FixedlineAdslCutomerListComponent } from './fixedline-adsl-cutomer-list/fixedline-adsl-cutomer-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
-
 @NgModule({
   declarations: [
     AddCustomerComponent,
     AdslCutomerListComponent,
     FixedlineCutomerListComponent,
-    FixedlineAdslCutomerListComponent
+    FixedlineAdslCutomerListComponent,
   ],
-  imports: [
-    CommonModule,
-    AdslFixedCutomersRoutingModule,
-    SharedModule
-  ]
+  imports: [CommonModule, AdslFixedCutomersRoutingModule, SharedModule],
 })
-export class AdslFixedCutomersModule { }
+export class AdslFixedCutomersModule {}

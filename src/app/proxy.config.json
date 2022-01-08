@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "http://d163-197-162-133-148.ngrok.io/",
+    "secure": false
+  }
+}

@@ -18,11 +18,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {
+  NgbPaginationModule,
+  NgbAlertModule,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [],
   imports: [
+    NgbPaginationModule,
+    NgbAlertModule,
     CommonModule,
     MatAutocompleteModule,
     MatCheckboxModule,
@@ -44,6 +50,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatPaginatorModule,
   ],
   exports: [
+    NgbPaginationModule,
+    NgbAlertModule,
     MatAutocompleteModule,
     MatCheckboxModule,
     MatDatepickerModule,

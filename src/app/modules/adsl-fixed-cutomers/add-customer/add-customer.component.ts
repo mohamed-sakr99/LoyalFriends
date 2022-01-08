@@ -1,3 +1,4 @@
+import { ApiService } from './../../../services/api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -21,7 +22,7 @@ export class AddCustomerComponent implements OnInit {
   serviceQuota!: FormControl;
   status!: FormControl;
   contactDate!: FormControl;
-  constructor() {
+  constructor(private apiservice: ApiService) {
     this.initFromcontrol();
     this.createForm();
   }
@@ -61,7 +62,13 @@ export class AddCustomerComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.myForm.value);
-    // return this.myForm.value;
+    this.apiservice
+      .addCutomerService(this.myForm.value)
+      .subscribe((res: any) => {
+        console.log(res);
+      });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.onSubmit();
+  }
 }

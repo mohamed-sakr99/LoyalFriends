@@ -6,6 +6,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LayoutComponent } from './layout.component';
 import { AsideDynamicComponent } from './components/aside-dynamic/aside-dynamic.component';
+import { LanguageSelectComponent } from './components/header/language-select/language-select.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { AsideDynamicComponent } from './components/aside-dynamic/aside-dynamic.
     FooterComponent,
     LayoutComponent,
     AsideDynamicComponent,
+    LanguageSelectComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, SharedModule],
   exports: [HeaderComponent, FooterComponent],

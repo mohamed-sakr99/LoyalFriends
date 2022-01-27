@@ -18,10 +18,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { PaginatorModule } from 'primeng/paginator';
+
 import {
   NgbPaginationModule,
   NgbAlertModule,
 } from '@ng-bootstrap/ng-bootstrap';
+import { BidiModule } from '@angular/cdk/bidi';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -48,6 +52,9 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatPaginatorModule,
+    BidiModule,
+    TableModule,
+    PaginatorModule,
   ],
   exports: [
     NgbPaginationModule,
@@ -70,6 +77,9 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatPaginatorModule,
+    BidiModule,
+    TableModule,
+    PaginatorModule,
   ],
 })
 export class SharedModule {}

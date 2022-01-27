@@ -21,7 +21,7 @@ mat-sidenav {
   height: calc(100vh - 98px);
   border-radius: 10px;
   margin: 16px;
-  margin-left: 32px;
+  margin-right: 32px;
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -45,3 +45,6 @@ mat-divider {
 /* ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
   opacity: 0;
 } */
+.ar > mat-drawer-content mat-sidenav-content {
+  margin-left: -260 !important;
+}

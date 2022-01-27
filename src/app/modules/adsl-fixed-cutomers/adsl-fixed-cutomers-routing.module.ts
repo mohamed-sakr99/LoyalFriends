@@ -1,3 +1,4 @@
+import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
 import { FixedlineCutomerListComponent } from './fixedline-cutomer-list/fixedline-cutomer-list.component';
 import { AdslCutomerListComponent } from './adsl-cutomer-list/adsl-cutomer-list.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'adsl-fixed-cust-list',
     component: FixedlineAdslCutomerListComponent,
+  },
+  {
+    path: 'edit/:id',
+    component: EditCustomerDetailsComponent,
   },
   {
     path: '',

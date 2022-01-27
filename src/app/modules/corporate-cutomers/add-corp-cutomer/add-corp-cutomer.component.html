@@ -1,1 +1,80 @@
-<p>add-corp-cutomer works!</p>
+<div class="card-body">
+  <span class="choose-cust">Add Corporate cutomer</span>
+  <form action="" [formGroup]="corporateForm" (ngSubmit)="onSubmit()">
+    <div class="row justify-content-lg-center">
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">cutomer name</label>
+          <input type="text" class="form-control" formControlName="name" />
+          <span *ngIf="name?.invalid && !name?.touched && name?.dirty">
+            this field is required
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">mobile</label>
+          <input type="number" class="form-control" formControlName="mobile" name="mobile" />
+          <span *ngIf="mobile?.invalid && mobile?.touched && !mobile?.dirty">
+            this field must be number
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">governate</label>
+          <select type="text" class="form-select" autofocus name="governorateID" formControlName="governorateID">
+            <option *ngFor="let gover of governorate" [value]="gover.ID">
+              {{ gover?.Name }}
+            </option>
+          </select>
+          <span *ngIf="
+            governorateID?.invalid && governorateID?.touched && !governorateID?.dirty
+          ">
+            you have to select governorate
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">city</label>
+          <input type="text" class="form-control" formControlName="city" name="city" />
+          <span *ngIf="
+            city?.invalid && city?.touched && !city?.dirty
+          ">
+            you have to add city
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">Company ddress</label>
+          <input type="text" class="form-control" formControlName="companyddress" name="companyddress" />
+          <span *ngIf="
+            companyddress?.invalid && companyddress?.touched && !companyddress?.dirty
+          ">
+            you have to add companyddress
+          </span>
+        </div>
+
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">contact date</label>
+          <input type="datetime-local" [min]="tomorrow" class="form-control" formControlName="contactDate"
+            name="contactDate" />
+          <span *ngIf="
+            contactDate?.invalid &&
+            contactDate?.touched &&
+            !contactDate?.dirty
+          ">
+            this field is required
+          </span>
+        </div>
+      </div>
+    </div>
+    <button [disabled]="corporateForm?.invalid" type="submit" class="d-inline-block mt-4 text-center btn btn-primary">
+      Add corporate Cutomer
+    </button>
+  </form>
+</div>

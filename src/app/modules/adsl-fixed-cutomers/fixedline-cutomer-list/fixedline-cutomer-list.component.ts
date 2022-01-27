@@ -1,15 +1,43 @@
+import { CustomersDetailsService } from './../../../services/customers-details.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-fixedline-cutomer-list',
   templateUrl: './fixedline-cutomer-list.component.html',
-  styleUrls: ['./fixedline-cutomer-list.component.css']
+  styleUrls: ['./fixedline-cutomer-list.component.css'],
 })
 export class FixedlineCutomerListComponent implements OnInit {
-
-  constructor() { }
+  fixedCutomers: any = [];
+  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  CustomerType = 23;
+  page: any = 1;
+  PageLimit: any = 1;
+  totalCount: any;
+  SearchText: any;
+  constructor(private customersDetailsService: CustomersDetailsService) {}
 
   ngOnInit(): void {
+    this.getFixedLineCustomerList();
   }
 
+  getFixedLineCustomerList() {
+    this.customersDetailsService
+      .getCustomerList(
+        this.UserID,
+        this.UserRole,
+        this.CustomerType,
+        this.page,
+        this.PageLimit,
+        this.SearchText
+      )
+      .subscribe((res: any) => {
+        this.fixedCutomers = res.Customers;
+        this.totalCount = res.TotalCount;
+      });
+  }
+  onPageChange(event: any) {
+    this.page = event.page + 1;
+    this.getFixedLineCustomerList();
+  }
 }

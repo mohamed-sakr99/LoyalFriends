@@ -1,11 +1,27 @@
-<button mat-icon-button *ngIf="sidenav.mode === 'side'" (click)="sidenav.toggle()">
-  <mat-icon *ngIf="!sidenav.opened">
-    menu
-  </mat-icon>
-  <mat-icon *ngIf="sidenav.opened">
-    close
-  </mat-icon>
-</button>
+<mat-toolbar class="d-flex justify-content-between alig-items-center">
+  <span>
+    <button mat-icon-button *ngIf="sidenav.mode === 'side'" (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">
+        menu
+      </mat-icon>
+      <mat-icon *ngIf="sidenav.opened">
+        close
+      </mat-icon>
+    </button>
+  </span>
+  <span>
+    hello {{name}}
+  </span>
+  <span>
+    LOYAL FRIENDS
+  </span>
+  <span>
+    <app-language-select></app-language-select>
+  </span>
+  <span>
+    <button class="btn btn-primary" (click)="logout()">logout</button>
+  </span>
+</mat-toolbar>
 
 <mat-sidenav-container>
 

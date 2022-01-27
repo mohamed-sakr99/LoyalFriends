@@ -1,14 +1,14 @@
 <div class="card-body">
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="editCustomer" (ngSubmit)="updateForm()">
     <div class="row justify-content-lg-center">
-      <div class="d-flex justify-content-start">
+      <!-- <div class="d-flex justify-content-start">
         <span class="inline-block choose-cust m-2">choose cutomer</span>
         <div class="m-3" *ngFor="let customer of customerType">
           <input class="form-check-input" [value]="customer?.ID" formControlName="customerTypeID" type="radio"
             name="customerTypeID" />
           <label class="cust-label" for="flexRadioDefault1">{{customer.Name}} </label>
         </div>
-      </div>
+      </div> -->
 
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
@@ -148,8 +148,7 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
           <label class="cust-label">service quota</label>
-          <select type="text" class="form-select" (change)="changeOffer($event)" autofocus name="serviceQuotaID"
-            formControlName="serviceQuotaID">
+          <select type="text" class="form-select" autofocus name="serviceQuotaID" formControlName="serviceQuotaID">
             <option *ngFor="let quot of quota" [value]="quot.ID">
               {{ quot?.Name }}
             </option>
@@ -221,8 +220,7 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
           <label class="cust-label">contact date</label>
-          <input type="datetime-local" [min]="tomorrow" class="form-control" formControlName="contactDate"
-            name="contactDate" />
+          <input type="date" [min]="tomorrow" class="form-control" formControlName="contactDate" name="contactDate" />
           <span *ngIf="
               contactDate?.invalid &&
               contactDate?.touched &&
@@ -242,8 +240,8 @@
         </div>
       </div>
     </div>
-    <button [disabled]="myForm?.invalid" type="submit" class="d-block mt-4 text-center btn btn-primary">
-      Add Cutomer
+    <button [disabled]="editCustomer?.invalid" type="submit" class="d-block mt-4 text-center btn btn-primary">
+      update Cutomer
     </button>
   </form>
 </div>

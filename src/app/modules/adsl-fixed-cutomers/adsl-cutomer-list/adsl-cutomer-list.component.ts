@@ -1,3 +1,4 @@
+import { CustomersDetailsService } from './../../../services/customers-details.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./adsl-cutomer-list.component.css'],
 })
 export class AdslCutomerListComponent implements OnInit {
-  constructor() {}
+  customers: any = [];
+  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  CustomerType = 22;
+  page = 1;
+  PageLimit = 1;
+  totalCount: any;
+  SearchText: any;
+  constructor(private cutomerDetailsService: CustomersDetailsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getCustomerListForAdsl();
+  }
+
+  getCustomerListForAdsl() {
+    this.cutomerDetailsService
+      .getCustomerList(
+        this.UserID,
+        this.UserRole,
+        this.CustomerType,
+        this.page,
+        this.PageLimit,
+        this.SearchText
+      )
+      .subscribe((res: any) => {
+        this.customers = res.Customers;
+        this.totalCount = res.TotalCount;
+        console.log('res', this.totalCount);
+      });
+  }
+  onPageChange(event: any) {
+    this.page = event.page + 1;
+    this.getCustomerListForAdsl();
+  }
+  onSearch() {
+    this.getCustomerListForAdsl();
+  }
 }

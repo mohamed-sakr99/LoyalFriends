@@ -1,5 +1,5 @@
 import { CustomersDetailsService } from './../../../services/customers-details.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-fixedline-cutomer-list',
@@ -15,7 +15,10 @@ export class FixedlineCutomerListComponent implements OnInit {
   PageLimit: any = 1;
   totalCount: any;
   SearchText: any;
-  constructor(private customersDetailsService: CustomersDetailsService) {}
+  constructor(
+    private customersDetailsService: CustomersDetailsService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getFixedLineCustomerList();
@@ -34,6 +37,7 @@ export class FixedlineCutomerListComponent implements OnInit {
       .subscribe((res: any) => {
         this.fixedCutomers = res.Customers;
         this.totalCount = res.TotalCount;
+        this.cdr.detectChanges();
       });
   }
   onPageChange(event: any) {

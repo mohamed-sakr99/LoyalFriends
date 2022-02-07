@@ -2,11 +2,13 @@ import { AuthService } from './../../_services/auth.service';
 import { ApiService } from './../../../services/api.service';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-customer',
   templateUrl: './add-customer.component.html',
   styleUrls: ['./add-customer.component.css'],
+  providers: [MessageService],
 })
 export class AddCustomerComponent implements OnInit {
   governorate: any = [];
@@ -19,10 +21,12 @@ export class AddCustomerComponent implements OnInit {
   customerType: any = [];
   GovernateID: any;
   cities: any = [];
+  RequestTypes: any = [];
   deliverMethod: any = [];
   UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
   tomorrow = new Date(this.todayDate.getTime());
   myForm!: FormGroup;
+  RequestNumber!: FormControl;
   customerTypeID!: FormControl;
   name!: FormControl;
   nationalId!: FormControl;
@@ -41,13 +45,15 @@ export class AddCustomerComponent implements OnInit {
   customerStatusID!: FormControl;
   RouterTypeID!: FormControl;
   RouterDeliveryMethodID!: FormControl;
-  contactDate!: FormControl;
+  ContactDate!: FormControl;
+  RequestTypeID!: FormControl;
   Comment!: FormControl;
 
   constructor(
     private apiservice: ApiService,
     private cdr: ChangeDetectorRef,
-    private authService: AuthService
+    private authService: AuthService,
+    public messageService: MessageService
   ) {
     this.initFromcontrol();
     this.createForm();
@@ -56,6 +62,7 @@ export class AddCustomerComponent implements OnInit {
   // create init values
   initFromcontrol() {
     this.customerTypeID = new FormControl('', Validators.required);
+    this.RequestNumber = new FormControl('', Validators.required);
     this.name = new FormControl('', Validators.required);
     this.nationalId = new FormControl('', Validators.required);
     this.address = new FormControl('', Validators.required);
@@ -73,7 +80,8 @@ export class AddCustomerComponent implements OnInit {
     this.customerStatusID = new FormControl('', Validators.required);
     this.RouterTypeID = new FormControl('', Validators.required);
     this.RouterDeliveryMethodID = new FormControl('', Validators.required);
-    this.contactDate = new FormControl('', Validators.required);
+    this.ContactDate = new FormControl('', Validators.required);
+    this.RequestTypeID = new FormControl('', Validators.required);
     this.Comment = new FormControl('', Validators.required);
   }
 
@@ -81,6 +89,7 @@ export class AddCustomerComponent implements OnInit {
   createForm() {
     this.myForm = new FormGroup({
       customerTypeID: this.customerTypeID,
+      RequestNumber: this.RequestNumber,
       name: this.name,
       nationalId: this.nationalId,
       address: this.address,
@@ -98,7 +107,8 @@ export class AddCustomerComponent implements OnInit {
       customerStatusID: this.customerStatusID,
       RouterTypeID: this.RouterTypeID,
       RouterDeliveryMethodID: this.RouterDeliveryMethodID,
-      contactDate: this.contactDate,
+      ContactDate: this.ContactDate,
+      RequestTypeID: this.RequestTypeID,
       Comment: this.Comment,
     });
   }
@@ -107,23 +117,41 @@ export class AddCustomerComponent implements OnInit {
     this.apiservice
       .addCutomerService(this.myForm.value, this.UserID)
       .subscribe((res: any) => {
+        if (res.status === 'successfully') {
+          this.myForm.reset();
+          this.addCustomerSuucessFuly();
+        } else {
+          this.ErrorInAddeddCustomer();
+        }
         console.log(res);
       });
   }
   ngOnInit(): void {
     this.getAddCustLookups();
   }
-
+  addCustomerSuucessFuly() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'you added Customer Successfly',
+      detail: 'تم اضافة عميل بنجاح',
+    });
+  }
+  ErrorInAddeddCustomer() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Customer not Added Yet',
+      detail: 'لم يتم اضافة عميل بعد',
+    });
+  }
   getAddCustLookups() {
     this.apiservice.getAddCustomerLookUps().subscribe((res: any) => {
       this.customerType = res.Lookups.CustomerType;
       this.governorate = res.Lookups.Governorate;
-      // this.offers = res.Lookups.Offer;
       this.providerService = res.Lookups.ServiceProvider;
       this.cutomerStatus = res.Lookups.CustomerStatus;
       this.routerType = res.Lookups.RouterType;
       this.deliverMethod = res.Lookups.RouterDeliveryMethod;
-
+      this.RequestTypes = res.Lookups.RequestType;
       this.cdr.detectChanges();
     });
   }

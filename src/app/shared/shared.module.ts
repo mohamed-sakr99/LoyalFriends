@@ -19,6 +19,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { PaginatorModule } from 'primeng/paginator';
+import { ToastModule } from 'primeng/toast';
 
 import {
   NgbPaginationModule,
@@ -55,6 +56,7 @@ import { TableModule } from 'primeng/table';
     BidiModule,
     TableModule,
     PaginatorModule,
+    ToastModule,
   ],
   exports: [
     NgbPaginationModule,
@@ -80,6 +82,7 @@ import { TableModule } from 'primeng/table';
     BidiModule,
     TableModule,
     PaginatorModule,
+    ToastModule,
   ],
 })
 export class SharedModule {}

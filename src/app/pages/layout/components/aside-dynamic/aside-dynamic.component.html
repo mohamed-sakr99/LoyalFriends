@@ -1,6 +1,6 @@
 <mat-toolbar class="d-flex justify-content-between alig-items-center">
   <span>
-    <button mat-icon-button *ngIf="sidenav.mode === 'side'" (click)="sidenav.toggle()">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">
         menu
       </mat-icon>
@@ -25,7 +25,7 @@
 
 <mat-sidenav-container>
 
-  <mat-sidenav class="mat-elevation-z8" #sidenav="matSidenav" hasBackdrop="false" mode="side">
+  <mat-sidenav class="mat-elevation-z8" #sidenav="matSidenav" hasBackdrop="false" mode="over">
     <mat-divider></mat-divider>
     <div class="text-left mt-2">reports</div>
     <mat-divider></mat-divider>
@@ -61,7 +61,10 @@
       corporate customer list
     </button>
     <mat-divider></mat-divider>
-
+    <button mat-button class="menu-button" routerLink="/dashboard">
+      Dashboard
+    </button>
+    <mat-divider></mat-divider>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="content mat-elevation-z8">

@@ -1,5 +1,5 @@
 import { CustomersDetailsService } from './../../../services/customers-details.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-adsl-cutomer-list',
@@ -12,10 +12,13 @@ export class AdslCutomerListComponent implements OnInit {
   UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
   CustomerType = 22;
   page = 1;
-  PageLimit = 1;
+  PageLimit = 10;
   totalCount: any;
   SearchText: any;
-  constructor(private cutomerDetailsService: CustomersDetailsService) {}
+  constructor(
+    private cutomerDetailsService: CustomersDetailsService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getCustomerListForAdsl();
@@ -34,7 +37,7 @@ export class AdslCutomerListComponent implements OnInit {
       .subscribe((res: any) => {
         this.customers = res.Customers;
         this.totalCount = res.TotalCount;
-        console.log('res', this.totalCount);
+        this.cdr.detectChanges();
       });
   }
   onPageChange(event: any) {

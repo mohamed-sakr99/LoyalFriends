@@ -5,6 +5,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FixedlineAdslCutomerListComponent } from './fixedline-adsl-cutomer-list/fixedline-adsl-cutomer-list.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: EditCustomerDetailsComponent,
+  },
+  {
+    path: 'info/:id',
+    component: CustomerInfoComponent,
   },
   {
     path: '',

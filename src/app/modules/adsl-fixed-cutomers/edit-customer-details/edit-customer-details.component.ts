@@ -15,12 +15,13 @@ export class EditCustomerDetailsComponent implements OnInit {
   UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
   UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
   page: any = 1;
-  PageLimit: any = 1;
+  PageLimit: any = 10;
   CustomerType: any = 24;
   totalCount: any;
   governorate: any = [];
   todayDate = new Date();
   offers: any = [];
+  RequestTypes: any = [];
   quota: any = [];
   providerService: any = [];
   cutomerStatus: any = [];
@@ -50,6 +51,7 @@ export class EditCustomerDetailsComponent implements OnInit {
   customerStatusID!: FormControl;
   RouterTypeID!: FormControl;
   RouterDeliveryMethodID!: FormControl;
+  RequestTypeID!: FormControl;
   contactDate!: FormControl;
   Comment!: FormControl;
   CustomerID: any;
@@ -82,6 +84,7 @@ export class EditCustomerDetailsComponent implements OnInit {
     this.RouterTypeID = new FormControl('', Validators.required);
     this.RouterDeliveryMethodID = new FormControl('', Validators.required);
     this.contactDate = new FormControl('', Validators.required);
+    this.RequestTypeID = new FormControl('', Validators.required);
     this.Comment = new FormControl('', Validators.required);
   }
 
@@ -106,6 +109,7 @@ export class EditCustomerDetailsComponent implements OnInit {
       RouterTypeID: this.RouterTypeID,
       RouterDeliveryMethodID: this.RouterDeliveryMethodID,
       contactDate: this.contactDate,
+      RequestTypeID: this.RequestTypeID,
       Comment: this.Comment,
     });
   }
@@ -144,6 +148,7 @@ export class EditCustomerDetailsComponent implements OnInit {
             res.Customer['RouterDeliveryMethodID']
           ),
           contactDate: new FormControl(res.Customer['ContactDate']),
+          RequestTypeID: new FormControl(res.Customer['RequestTypeID']),
           Comment: new FormControl(res.Customer['Comment']),
         });
       });
@@ -178,11 +183,12 @@ export class EditCustomerDetailsComponent implements OnInit {
     this.apiservice.getAddCustomerLookUps().subscribe((res: any) => {
       this.customerType = res.Lookups.CustomerType;
       this.governorate = res.Lookups.Governorate;
-      // this.offers = res.Lookups.Offer;
       this.providerService = res.Lookups.ServiceProvider;
       this.cutomerStatus = res.Lookups.CustomerStatus;
       this.routerType = res.Lookups.RouterType;
       this.deliverMethod = res.Lookups.RouterDeliveryMethod;
+      this.RequestTypes = res.Lookups.RequestType;
+      console.log(this.RequestTypes);
 
       this.cdr.detectChanges();
     });

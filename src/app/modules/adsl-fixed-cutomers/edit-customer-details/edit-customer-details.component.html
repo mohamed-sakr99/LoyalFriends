@@ -232,6 +232,21 @@
       </div>
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
+          <label class="cust-label">Request Type</label>
+          <select type="text" class="form-select" autofocus name="RequestTypeID" formControlName="RequestTypeID">
+            <option *ngFor="let ReqType of RequestTypes" [value]="ReqType.ID">
+              {{ ReqType?.Name }}
+            </option>
+          </select>
+          <span *ngIf="
+            RequestTypes?.invalid && RequestTypes?.touched && !RequestTypes?.dirty
+          ">
+            you have to add RequestType
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
           <label class="cust-label">Add Comment</label>
           <textarea type="text" class="form-control" formControlName="Comment" name="Comment"></textarea>
           <span *ngIf="Comment?.invalid && Comment?.touched && !Comment?.dirty">

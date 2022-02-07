@@ -4,9 +4,18 @@
     <div class="row justify-content-lg-center">
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
-          <label class="cust-label">cutomer name</label>
+          <label class="cust-label">Account Number</label>
+          <input type="text" class="form-control" formControlName="AccountNumber" />
+          <span *ngIf="AccountNumber?.invalid && !AccountNumber?.touched && !AccountNumber?.dirty">
+            this field is required
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">Cutomer Name</label>
           <input type="text" class="form-control" formControlName="name" />
-          <span *ngIf="name?.invalid && !name?.touched && name?.dirty">
+          <span *ngIf="name?.invalid && !name?.touched && !name?.dirty">
             this field is required
           </span>
         </div>
@@ -22,52 +31,96 @@
       </div>
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
-          <label class="cust-label">governate</label>
-          <select type="text" class="form-select" autofocus name="governorateID" formControlName="governorateID">
-            <option *ngFor="let gover of governorate" [value]="gover.ID">
-              {{ gover?.Name }}
+          <label class="cust-label">CompanyName</label>
+          <input type="text" class="form-control" formControlName="CompanyName" name="CompanyName" />
+          <span *ngIf="
+            CompanyName?.invalid && CompanyName?.touched && !CompanyName?.dirty
+          ">
+            you have to add CompanyName
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">CompanyAddress</label>
+          <input type="text" class="form-control" formControlName="CompanyAddress" name="CompanyAddress" />
+          <span *ngIf="
+            CompanyAddress?.invalid && CompanyAddress?.touched && !CompanyAddress?.dirty
+          ">
+            you have to add CompanyAddress
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">CompanyType</label>
+          <input type="text" class="form-control" formControlName="CompanyType" name="CompanyType" />
+          <span *ngIf="
+            CompanyType?.invalid && CompanyType?.touched && !CompanyType?.dirty
+          ">
+            you have to add CompanyType
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">Account Type</label>
+          <select type="text" class="form-select" autofocus name="AccountTypeID" formControlName="AccountTypeID">
+            <option *ngFor="let account of AccountType" [value]="account.ID">
+              {{ account?.Name }}
             </option>
           </select>
           <span *ngIf="
-            governorateID?.invalid && governorateID?.touched && !governorateID?.dirty
+            CompanyType?.invalid && CompanyType?.touched && !CompanyType?.dirty
           ">
-            you have to select governorate
+            you have to add CompanyType
           </span>
         </div>
       </div>
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
-          <label class="cust-label">city</label>
-          <input type="text" class="form-control" formControlName="city" name="city" />
+          <label class="cust-label">Status</label>
+          <select type="text" class="form-select" autofocus name="CustomerStatusID" formControlName="CustomerStatusID">
+            <option *ngFor="let status of customerStatus" [value]="status.ID">
+              {{ status?.Name }}
+            </option>
+          </select>
           <span *ngIf="
-            city?.invalid && city?.touched && !city?.dirty
+            CompanyType?.invalid && CompanyType?.touched && !CompanyType?.dirty
           ">
-            you have to add city
+            you have to add CompanyType
           </span>
         </div>
       </div>
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
-          <label class="cust-label">Company ddress</label>
-          <input type="text" class="form-control" formControlName="companyddress" name="companyddress" />
-          <span *ngIf="
-            companyddress?.invalid && companyddress?.touched && !companyddress?.dirty
-          ">
-            you have to add companyddress
+          <label class="cust-label">Lines Number</label>
+          <input type="text" class="form-control" formControlName="LinesNumber" />
+          <span *ngIf="LinesNumber?.invalid && !LinesNumber?.touched && !LinesNumber?.dirty">
+            this field is required
           </span>
         </div>
-
       </div>
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
-          <label class="cust-label">contact date</label>
-          <input type="datetime-local" [min]="tomorrow" class="form-control" formControlName="contactDate"
-            name="contactDate" />
+          <label class="cust-label">Request Type</label>
+          <select type="text" class="form-select" autofocus name="RequestTypeID" formControlName="RequestTypeID">
+            <option *ngFor="let ReqType of RequestTypes" [value]="ReqType.ID">
+              {{ ReqType?.Name }}
+            </option>
+          </select>
           <span *ngIf="
-            contactDate?.invalid &&
-            contactDate?.touched &&
-            !contactDate?.dirty
+            RequestTypeID?.invalid && RequestTypeID?.touched && !RequestTypeID?.dirty
           ">
+            you have to add RequestType
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">Add Comment</label>
+          <textarea type="text" class="form-control" formControlName="Comment" name="Comment"></textarea>
+          <span *ngIf="Comment?.invalid && Comment?.touched && !Comment?.dirty">
             this field is required
           </span>
         </div>
@@ -77,4 +130,5 @@
       Add corporate Cutomer
     </button>
   </form>
+  <p-toast position="bottom-center"></p-toast>
 </div>

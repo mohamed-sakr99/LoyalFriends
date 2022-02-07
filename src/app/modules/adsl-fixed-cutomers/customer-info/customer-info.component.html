@@ -1,0 +1,117 @@
+<div class="cutomer-info m-2 p-2">
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <h6 class="text-success">customer info : {{customerInfo.Name}}</h6>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> Cutomer name :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.Name}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> CustomerType :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.CustomerType}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> Governorate :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.Governorate}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> Address :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.Address}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> City :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.City}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> District :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.District}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> SpecialMark :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.SpecialMark}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> Central :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.Central}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> ContactDate :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.ContactDate}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> CustomerStatus :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.CustomerStatus}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> CreatedOn :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.CreatedOn}}</span>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> FixedLine :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.FixedLine}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> NearestFixedLine :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.NearestFixedLine}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> ModifiedByName :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.ModifiedByName}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> ModifiedOn :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.ModifiedOn}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> ServiceProvider :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.ServiceProvider}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> ServiceQuota :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.ServiceQuota}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> Offer :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.Offer}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> RouterType :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.RouterType}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> RouterDeliveryMethod :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.RouterDeliveryMethod}}</span>
+        </div>
+        <div class="d-flex justify-content-start align-items-center">
+          <span class="d-inline-block info m-2 p-2"> CreatedByName :</span> <span
+            class="d-inline-block info m-2 p-2">{{customerInfo.CreatedByName}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h5>history</h5>
+    <p-table [value]="customerHistory" [scrollable]="true" scrollHeight="400px">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="min-width:200px">comment</th>
+          <th style="min-width:200px"> by </th>
+          <th style="min-width:200px"> on</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-history>
+        <tr>
+          <td style="min-width:200px">{{history.Comment}}</td>
+          <td style="min-width:200px">{{history.CreatedBy}}</td>
+          <td style="min-width:200px">{{history.CreatedOn}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

@@ -10,13 +10,12 @@ import { Router } from '@angular/router';
 export class AsideDynamicComponent implements OnInit {
   name: string = JSON.parse(localStorage.getItem('user') || '{}').Name;
   @Input() hasBackdrop: any;
-  private dir: Direction = 'rtl';
+  // public dir: Direction = 'rtl';
   constructor(directionality: Directionality, private router: Router) {
-    this.dir = directionality.value;
-
-    directionality.change.subscribe(() => {
-      this.dir = directionality.value;
-    });
+    // this.dir = directionality.value;
+    // directionality.change.subscribe(() => {
+    //   this.dir = directionality.value;
+    // });
   }
 
   logout() {

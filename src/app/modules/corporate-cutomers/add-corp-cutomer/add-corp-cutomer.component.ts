@@ -1,48 +1,110 @@
+import { CorporateApiService } from './../../../services/corporate-api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-corp-cutomer',
   templateUrl: './add-corp-cutomer.component.html',
   styleUrls: ['./add-corp-cutomer.component.css'],
+  providers: [MessageService],
 })
 export class AddCorpCutomerComponent implements OnInit {
-  governorate: any = [];
+  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  AccountType: any = [];
+  customerStatus: any = [];
+  RequestTypes: any = [];
   tomorrow = new Date();
   corporateForm!: FormGroup;
+  RequestTypeID!: FormControl;
+  AccountNumber!: FormControl;
   name!: FormControl;
   mobile!: FormControl;
-  governorateID!: FormControl;
-  city!: FormControl;
-  companyddress!: FormControl;
-  contactDate!: FormControl;
+  CompanyName!: FormControl;
+  CompanyAddress!: FormControl;
+  CompanyType!: FormControl;
+  AccountTypeID!: FormControl;
+  CustomerStatusID!: FormControl;
+  LinesNumber!: FormControl;
+  Comment!: FormControl;
   // create init Values
 
-  constructor() {
+  constructor(
+    private corporateApiService: CorporateApiService,
+    private cdr: ChangeDetectorRef,
+    private messageService: MessageService
+  ) {
     this.initFormControl();
     this.createForm();
   }
   initFormControl() {
+    this.AccountNumber = new FormControl('', Validators.required);
     this.name = new FormControl('', Validators.required);
     this.mobile = new FormControl('', Validators.required);
-    this.city = new FormControl('', Validators.required);
-    this.companyddress = new FormControl('', Validators.required);
-    this.governorateID = new FormControl('', Validators.required);
-    this.contactDate = new FormControl('', Validators.required);
+    this.CompanyName = new FormControl('', Validators.required);
+    this.CompanyAddress = new FormControl('', Validators.required);
+    this.CompanyType = new FormControl('', Validators.required);
+    this.AccountTypeID = new FormControl('', Validators.required);
+    this.CustomerStatusID = new FormControl('', Validators.required);
+    this.LinesNumber = new FormControl('', Validators.required);
+    this.RequestTypeID = new FormControl('', Validators.required);
+    this.Comment = new FormControl('', Validators.required);
   }
 
   createForm() {
     this.corporateForm = new FormGroup({
+      AccountNumber: this.AccountNumber,
       name: this.name,
-      governorateID: this.name,
-      mobile: this.name,
-      city: this.name,
-      companyddress: this.name,
-      contactDate: this.name,
+      mobile: this.mobile,
+      CompanyName: this.CompanyName,
+      CompanyAddress: this.CompanyAddress,
+      CompanyType: this.CompanyType,
+      AccountTypeID: this.AccountTypeID,
+      CustomerStatusID: this.CustomerStatusID,
+      LinesNumber: this.LinesNumber,
+      RequestTypeID: this.RequestTypeID,
+      Comment: this.Comment,
     });
   }
   onSubmit() {
+    this.corporateApiService
+      .addCorporateCustomer(this.corporateForm.value, this.UserID)
+      .subscribe((res: any) => {
+        if (res.status === 'successfully') {
+          this.corporateForm.reset();
+          this.addCustomerSuucessFuly();
+        } else {
+          this.ErrorInAddeddCustomer();
+        }
+      });
     console.log(this.corporateForm.value);
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.getLookupsForCorporate();
+  }
+  addCustomerSuucessFuly() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'you added Customer Successfly',
+      detail: 'تم اضافة عميل بنجاح',
+    });
+  }
+  ErrorInAddeddCustomer() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Customer not Added Yet',
+      detail: 'لم يتم اضافة عميل بعد',
+    });
+  }
+  getLookupsForCorporate() {
+    this.corporateApiService.getCorporateLookups().subscribe((res: any) => {
+      this.AccountType = res.Lookups.AccountType;
+      this.customerStatus = res.Lookups.CustomerStatus;
+      this.RequestTypes = res.Lookups.RequestType;
+      this.cdr.detectChanges();
+      console.log(this.AccountType);
+    });
+  }
 }

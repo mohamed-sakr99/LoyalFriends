@@ -8,6 +8,7 @@ import { FixedlineCutomerListComponent } from './fixedline-cutomer-list/fixedlin
 import { FixedlineAdslCutomerListComponent } from './fixedline-adsl-cutomer-list/fixedline-adsl-cutomer-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
+import { CustomerInfoComponent } from './customer-info/customer-info.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { EditCustomerDetailsComponent } from './edit-customer-details/edit-custo
     FixedlineCutomerListComponent,
     FixedlineAdslCutomerListComponent,
     EditCustomerDetailsComponent,
+    CustomerInfoComponent,
   ],
   imports: [CommonModule, AdslFixedCutomersRoutingModule, SharedModule],
 })

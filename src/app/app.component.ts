@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'loyal-friends';
   constructor(public translate: TranslateService) {
     translate.addLangs(['ar', 'en']);
-    translate.setDefaultLang('ar');
+    translate.setDefaultLang('en');
     if (this.currLang !== null && this.currLang !== undefined) {
       this.translate.use(this.currLang);
       let x = this.currLang === 'ar' ? 'rtl' : 'ltr';

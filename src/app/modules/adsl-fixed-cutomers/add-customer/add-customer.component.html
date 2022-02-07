@@ -9,6 +9,15 @@
           <label class="cust-label" for="flexRadioDefault1">{{customer.Name}} </label>
         </div>
       </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">Request Number</label>
+          <input type="text" class="form-control" formControlName="RequestNumber" />
+          <span *ngIf="RequestNumber?.invalid && RequestNumber?.touched && !RequestNumber?.dirty">
+            this field is required
+          </span>
+        </div>
+      </div>
 
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
@@ -221,14 +230,28 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
           <label class="cust-label">contact date</label>
-          <input type="datetime-local" [min]="tomorrow" class="form-control" formControlName="contactDate"
-            name="contactDate" />
+          <input type="date" [min]="tomorrow" class="form-control" formControlName="ContactDate" name="ContactDate" />
           <span *ngIf="
-              contactDate?.invalid &&
-              contactDate?.touched &&
-              !contactDate?.dirty
+              ContactDate?.invalid &&
+              ContactDate?.touched &&
+              !ContactDate?.dirty
             ">
             this field is required
+          </span>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-6 col-12">
+        <div class="mt-4">
+          <label class="cust-label">Request Type</label>
+          <select type="text" class="form-select" autofocus name="RequestTypeID" formControlName="RequestTypeID">
+            <option *ngFor="let ReqType of RequestTypes" [value]="ReqType.ID">
+              {{ ReqType?.Name }}
+            </option>
+          </select>
+          <span *ngIf="
+          RequestTypeID?.invalid && RequestTypeID?.touched && !RequestTypeID?.dirty
+          ">
+            you have to add RequestType
           </span>
         </div>
       </div>
@@ -247,3 +270,4 @@
     </button>
   </form>
 </div>
+<p-toast position="bottom-center"></p-toast>

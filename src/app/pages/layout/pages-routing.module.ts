@@ -30,6 +30,13 @@ const routes: Routes = [
           ).then((m) => m.CorporateCutomersModule),
       },
       {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('../../modules/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+      {
         path: '',
         redirectTo: 'reports',
         pathMatch: 'full',

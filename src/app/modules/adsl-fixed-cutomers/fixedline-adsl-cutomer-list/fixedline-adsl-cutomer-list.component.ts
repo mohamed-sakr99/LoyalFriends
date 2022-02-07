@@ -1,5 +1,5 @@
 import { CustomersDetailsService } from './../../../services/customers-details.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-fixedline-adsl-cutomer-list',
@@ -15,7 +15,10 @@ export class FixedlineAdslCutomerListComponent implements OnInit {
   CustomerType: any = 24;
   totalCount: any;
   SearchText: any;
-  constructor(private customerDetailsService: CustomersDetailsService) {}
+  constructor(
+    private customerDetailsService: CustomersDetailsService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.getAdslAndFixedLineCustomerList();
@@ -33,6 +36,7 @@ export class FixedlineAdslCutomerListComponent implements OnInit {
       .subscribe((res: any) => {
         this.fixedAndAdslCustomers = res.Customers;
         this.totalCount = res.TotalCount;
+        this.cdr.detectChanges();
       });
   }
   onPageChange(event: any) {

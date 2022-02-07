@@ -45,43 +45,12 @@ export class CustomersDetailsService {
       params: params,
     });
   }
-  // getFixedCustList(
-  //   UserID: any,
-  //   UserRole: any,
-  //   CustomerType: any,
-  //   page: any,
-  //   PageLimit: any,
-  //   SearchText: any
-  // ) {
-  //   let params = new HttpParams();
-  //   params = params.append('UserID', UserID);
-  //   params = params.append('UserRole', UserRole);
-  //   params = params.append('CustomerType', CustomerType);
-  //   params = params.append('page', page);
-  //   params = params.append('PageLimit', PageLimit);
-  //   if (SearchText) params = params.append('SearchText', SearchText);
-  //   return this.http.get(this.apiServer + 'Customer/CustomerList/', {
-  //     params: params,
-  //   });
-  // }
 
-  // getAdslAndFixedCustLIst(
-  //   UserID: any,
-  //   UserRole: any,
-  //   CustomerType: any,
-  //   page: any,
-  //   PageLimit: any,
-  //   SearchText: any
-  // ) {
-  //   let params = new HttpParams();
-  //   params = params.append('UserID', UserID);
-  //   params = params.append('UserRole', UserRole);
-  //   params = params.append('CustomerType', CustomerType);
-  //   params = params.append('page', page);
-  //   params = params.append('PageLimit', PageLimit);
-  //   if (SearchText) params = params.append('SearchText', SearchText);
-  //   return this.http.get(this.apiServer + 'Customer/CustomerList/', {
-  //     params: params,
-  //   });
-  // }
+  getCustomerInfo(CustomerID: any) {
+    let params = new HttpParams();
+    params = params.append('CustomerID', CustomerID);
+    return this.http.get(this.apiServer + 'Customer/CustomerDetails', {
+      params: params,
+    });
+  }
 }

@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { CorporateApiService } from './../../../services/corporate-api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
@@ -10,8 +11,8 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class AddCorpCutomerComponent implements OnInit {
-  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
-  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   AccountType: any = [];
   customerStatus: any = [];
   RequestTypes: any = [];
@@ -29,7 +30,6 @@ export class AddCorpCutomerComponent implements OnInit {
   LinesNumber!: FormControl;
   Comment!: FormControl;
   // create init Values
-
   constructor(
     private corporateApiService: CorporateApiService,
     private cdr: ChangeDetectorRef,
@@ -68,6 +68,7 @@ export class AddCorpCutomerComponent implements OnInit {
     });
   }
   onSubmit() {
+    document.getElementById('button')?.setAttribute('disabled', 'true');
     this.corporateApiService
       .addCorporateCustomer(this.corporateForm.value, this.UserID)
       .subscribe((res: any) => {
@@ -78,7 +79,7 @@ export class AddCorpCutomerComponent implements OnInit {
           this.ErrorInAddeddCustomer();
         }
       });
-    console.log(this.corporateForm.value);
+    document.getElementById('button')?.removeAttribute('disabled');
   }
 
   ngOnInit(): void {

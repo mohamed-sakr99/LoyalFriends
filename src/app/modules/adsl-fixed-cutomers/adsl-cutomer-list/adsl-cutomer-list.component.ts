@@ -1,20 +1,24 @@
 import { CustomersDetailsService } from './../../../services/customers-details.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-adsl-cutomer-list',
   templateUrl: './adsl-cutomer-list.component.html',
   styleUrls: ['./adsl-cutomer-list.component.css'],
 })
-export class AdslCutomerListComponent implements OnInit {
+export class AdslCutomerListComponent implements OnInit, OnDestroy {
   customers: any = [];
-  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
-  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   CustomerType = 22;
   page = 1;
   PageLimit = 10;
   totalCount: any;
   SearchText: any;
+
+  private unsubscribe: Subscription[] = [];
+
   constructor(
     private cutomerDetailsService: CustomersDetailsService,
     private cdr: ChangeDetectorRef
@@ -46,5 +50,9 @@ export class AdslCutomerListComponent implements OnInit {
   }
   onSearch() {
     this.getCustomerListForAdsl();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 }

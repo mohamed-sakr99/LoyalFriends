@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./aside-dynamic.component.css'],
 })
 export class AsideDynamicComponent implements OnInit {
-  name: string = JSON.parse(localStorage.getItem('user') || '{}').Name;
+  name = JSON.parse(localStorage.getItem('user') || '{}')?.Name;
   @Input() hasBackdrop: any;
   // public dir: Direction = 'rtl';
   constructor(directionality: Directionality, private router: Router) {

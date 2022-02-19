@@ -49,7 +49,11 @@
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
           <label class="cust-label">User Role</label>
-          <input type="text" class="form-control" formControlName="UserRoleID" />
+          <select type="text" class="form-select" autofocus name="UserRoleID" formControlName="UserRoleID">
+            <option *ngFor="let userRole of userRoleDropMenu" [value]="userRole.ID">
+              {{ userRole?.Name }}
+            </option>
+          </select>
           <span *ngIf="UserRoleID?.invalid && !UserRoleID?.touched && !UserRoleID?.dirty">
             this field is required
           </span>
@@ -57,11 +61,8 @@
       </div>
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
-          <label class="cust-label">Name</label>
-          <input type="text" class="form-control" formControlName="Name" />
-          <span *ngIf="Name?.invalid && !Name?.touched && !Name?.dirty">
-            this field is required
-          </span>
+          <label class="cust-label">is Active</label>
+          <mat-slide-toggle formControlName="IsActive"></mat-slide-toggle>
         </div>
       </div>
       <button [disabled]="addUserForm?.invalid" type="submit" class="d-block mt-4 text-center btn btn-primary">

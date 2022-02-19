@@ -1,17 +1,23 @@
-<div class="d-flex justify-content-evenly align-items-center mt-5">
-  <button class="btn btn-primary" routerLink="/dashboard/adduser">
-    Add User
-  </button>
-  <button class="btn btn-primary" routerLink="/dashboard/userlist">
-    User List
-  </button>
-  <button class="btn btn-primary" routerLink="/dashboard/editmenus">
-    Edit Menus
-  </button>
-</div>
-
-<div class="mt-5">
-  <div class="container">
-    <router-outlet></router-outlet>
+<div class="main">
+  <div class="d-flex justify-content-evenly align-items-center mt-5">
+    <button class="btn btn-primary" routerLink="/dashboard/adduser">
+      Add User
+    </button>
+    <button class="btn btn-primary" routerLink="/dashboard/userlist">
+      User List
+    </button>
+    <button class="btn btn-primary" routerLink="/dashboard/addtomenu">
+      Add to Menus
+    </button>
+    <button class="btn btn-primary" routerLink="/dashboard/menulist">
+      Menu List
+    </button>
   </div>
+  <hr>
+  <div class="mt-5">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
 </div>

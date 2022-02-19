@@ -23,7 +23,7 @@ export class AddCustomerComponent implements OnInit {
   cities: any = [];
   RequestTypes: any = [];
   deliverMethod: any = [];
-  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
+  UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
   tomorrow = new Date(this.todayDate.getTime());
   myForm!: FormGroup;
   RequestNumber!: FormControl;
@@ -48,7 +48,6 @@ export class AddCustomerComponent implements OnInit {
   ContactDate!: FormControl;
   RequestTypeID!: FormControl;
   Comment!: FormControl;
-
   constructor(
     private apiservice: ApiService,
     private cdr: ChangeDetectorRef,
@@ -82,7 +81,7 @@ export class AddCustomerComponent implements OnInit {
     this.RouterDeliveryMethodID = new FormControl('', Validators.required);
     this.ContactDate = new FormControl('', Validators.required);
     this.RequestTypeID = new FormControl('', Validators.required);
-    this.Comment = new FormControl('', Validators.required);
+    this.Comment = new FormControl();
   }
 
   // create form
@@ -113,7 +112,7 @@ export class AddCustomerComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log(this.myForm.value);
+    document.getElementById('button')?.setAttribute('disabled', 'true');
     this.apiservice
       .addCutomerService(this.myForm.value, this.UserID)
       .subscribe((res: any) => {
@@ -123,7 +122,7 @@ export class AddCustomerComponent implements OnInit {
         } else {
           this.ErrorInAddeddCustomer();
         }
-        console.log(res);
+        document.getElementById('button')?.removeAttribute('disabled');
       });
   }
   ngOnInit(): void {
@@ -168,5 +167,24 @@ export class AddCustomerComponent implements OnInit {
     this.apiservice.getOffer(value).subscribe((res: any) => {
       this.offers = res.Lookups.Offer;
     });
+  }
+
+  changetStatus(event: Event) {
+    let value = (event.target as HTMLInputElement).value;
+    if (value === '17') {
+      this.setValidation('Comment');
+    } else {
+      this.clearValidation('Comment');
+    }
+  }
+
+  setValidation(controlName: any) {
+    this.myForm.controls[controlName].setValidators(Validators.required);
+    this.myForm.controls[controlName].updateValueAndValidity();
+  }
+
+  clearValidation(controlName: any) {
+    this.myForm.controls[controlName].clearValidators();
+    this.myForm.controls[controlName].updateValueAndValidity();
   }
 }

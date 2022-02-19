@@ -49,10 +49,9 @@ export class CorporateApiService {
 
   UpdateCurrentCorporateCustomer(data: any, UserID: any, CorporateID: any) {
     let params = new HttpParams();
-    params = params.append('data', data);
     params = params.append('UserID', UserID);
     params = params.append('CorporateID', CorporateID);
-    return this.http.put(this.apiServer + 'Corporate/EditCorporate/', {
+    return this.http.put(this.apiServer + 'Corporate/EditCorporate/', data, {
       params: params,
     });
   }

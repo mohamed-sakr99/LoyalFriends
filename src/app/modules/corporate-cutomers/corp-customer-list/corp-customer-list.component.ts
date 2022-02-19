@@ -1,19 +1,23 @@
 import { CorporateApiService } from 'src/app/services/corporate-api.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-corp-customer-list',
   templateUrl: './corp-customer-list.component.html',
   styleUrls: ['./corp-customer-list.component.css'],
 })
-export class CorpCustomerListComponent implements OnInit {
+export class CorpCustomerListComponent implements OnInit, OnDestroy {
   corporateCustomer: any = [];
-  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
-  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   Page: any = 1;
   PageLimit: any = 20;
   totalCount: any;
   SearchText: any;
+
+  private unsubscribe: Subscription[] = [];
+
   constructor(
     private corporateApiService: CorporateApiService,
     private cdr: ChangeDetectorRef
@@ -44,5 +48,9 @@ export class CorpCustomerListComponent implements OnInit {
   }
   onSearch() {
     this.getCustomerForCorporate();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 }

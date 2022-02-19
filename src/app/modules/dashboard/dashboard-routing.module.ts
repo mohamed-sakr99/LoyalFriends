@@ -1,3 +1,5 @@
+import { ListOfDropDownMenuComponent } from './list-of-drop-down-menu/list-of-drop-down-menu.component';
+import { AddToDropDownMenuComponent } from './add-to-drop-down-menu/add-to-drop-down-menu.component';
 import { DashboardComponent } from './dashboard.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { NgModule } from '@angular/core';
@@ -24,7 +26,15 @@ const routes: Routes = [
         component: ListUserComponent,
       },
       {
-        path: 'editmenus',
+        path: 'addtomenu',
+        component: AddToDropDownMenuComponent,
+      },
+      {
+        path: 'menulist',
+        component: ListOfDropDownMenuComponent,
+      },
+      {
+        path: 'editmenus/:id',
         component: EditDropDownsMenuComponent,
       },
       {

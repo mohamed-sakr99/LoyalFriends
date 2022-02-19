@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CorporateApiService } from 'src/app/services/corporate-api.service';
 
 @Component({
   selector: 'app-edit-corp-cust',
   templateUrl: './edit-corp-cust.component.html',
   styleUrls: ['./edit-corp-cust.component.css'],
+  providers: [MessageService],
 })
-export class EditCorpCustComponent implements OnInit {
+export class EditCorpCustComponent implements OnInit, OnDestroy {
   CorporateID: any;
-  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
-  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   page: any = 1;
   PageLimit: any = 10;
   AccountType: any = [];
@@ -29,10 +32,13 @@ export class EditCorpCustComponent implements OnInit {
   CustomerStatusID!: FormControl;
   LinesNumber!: FormControl;
   Comment!: FormControl;
+  private unsubscribe: Subscription[] = [];
 
   constructor(
     private corporateApiService: CorporateApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private messageService: MessageService,
+    private router: Router
   ) {
     this.initFormGroup();
     this.createForm();
@@ -82,8 +88,6 @@ export class EditCorpCustComponent implements OnInit {
     this.corporateApiService
       .editCorporateCustomer(+this.CorporateID)
       .subscribe((res: any) => {
-        console.log('resCorporate', res);
-
         this.editCorporateForm = new FormGroup({
           AccountNumber: new FormControl(res.Corporate['AccountNumber']),
           name: new FormControl(res.Corporate['Name']),
@@ -100,14 +104,40 @@ export class EditCorpCustComponent implements OnInit {
       });
   }
   updateCurrentCutomerForm() {
+    document.getElementById('button')?.setAttribute('disabled', 'true');
     this.corporateApiService
       .UpdateCurrentCorporateCustomer(
-        this.editCorporateForm,
+        this.editCorporateForm.value,
         this.UserID,
         this.CorporateID
       )
-      .subscribe((res) => {
-        console.log('res', res);
+      .subscribe((res: any) => {
+        if (res?.status === 'successfully') {
+          this.editedCutomer();
+          setTimeout(() => {
+            this.router.navigate(['/corp-cust/corp-cust-list']);
+          }, 2500);
+        } else {
+          this.ErrorInEditedCustomer();
+        }
+        document.getElementById('button')?.removeAttribute('disabled');
       });
+  }
+  editedCutomer() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'you modified Customer Successfly',
+      detail: 'تم تعديل عميل بنجاح',
+    });
+  }
+  ErrorInEditedCustomer() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Customer not modifided Yet',
+      detail: 'لم يتم تعديل العميل بعد',
+    });
+  }
+  ngOnDestroy(): void {
+    this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 }

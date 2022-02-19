@@ -1,6 +1,6 @@
 <mat-toolbar class="d-flex justify-content-between alig-items-center">
   <span>
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <button mat-icon-button *ngIf="sidenav.mode === 'side'" (click)="sidenav.toggle()">
       <mat-icon *ngIf="!sidenav.opened">
         menu
       </mat-icon>
@@ -9,15 +9,15 @@
       </mat-icon>
     </button>
   </span>
-  <span>
-    hello {{name}}
+  <span style="border: 1px dashed #eee;">
+    Hello {{name}}
   </span>
-  <span>
+  <span class="copmany-name" style="color: #fff; font-size:12px;">
     LOYAL FRIENDS
   </span>
-  <span>
+  <!-- <span>
     <app-language-select></app-language-select>
-  </span>
+  </span> -->
   <span>
     <button class="btn btn-primary" (click)="logout()">logout</button>
   </span>
@@ -25,7 +25,7 @@
 
 <mat-sidenav-container>
 
-  <mat-sidenav class="mat-elevation-z8" #sidenav="matSidenav" hasBackdrop="false" mode="over">
+  <mat-sidenav class="mat-elevation-z8" #sidenav="matSidenav" hasBackdrop="false" mode="side">
     <mat-divider></mat-divider>
     <div class="text-left mt-2">reports</div>
     <mat-divider></mat-divider>
@@ -54,14 +54,14 @@
     <mat-divider></mat-divider>
     <div class="text-left mt-2">corporate </div>
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="/corp-cust/add-corp-cust">
+    <button mat-button class="menu-button" routerLink="/corp-cust/add-corp-cust" routerLinkActive="active-link">
       add corporate customer
     </button>
-    <button mat-button class="menu-button" routerLink="/corp-cust/corp-cust-list">
+    <button mat-button class="menu-button" routerLink="/corp-cust/corp-cust-list" routerLinkActive="active-link">
       corporate customer list
     </button>
     <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="/dashboard">
+    <button mat-button class="menu-button" routerLink="/dashboard" routerLinkActive="active-link">
       Dashboard
     </button>
     <mat-divider></mat-divider>

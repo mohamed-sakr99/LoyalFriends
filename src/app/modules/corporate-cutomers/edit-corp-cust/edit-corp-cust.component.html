@@ -1,12 +1,13 @@
 <div class="card-body">
-  <span class="choose-cust">Add Corporate cutomer</span>
-  <form action="" [formGroup]="editCorporateForm" (ngSubmit)="updateCurrentCutomerForm">
+  <h2>update Corporate cutomer</h2>
+  <hr>
+  <form action="" [formGroup]="editCorporateForm" (ngSubmit)="updateCurrentCutomerForm()">
     <div class="row justify-content-lg-center">
       <div class="col-md-4 col-sm-6 col-12">
         <div class="mt-4">
           <label class="cust-label">Account Number</label>
           <input type="text" class="form-control" formControlName="AccountNumber" />
-          <span *ngIf="AccountNumber?.invalid && !AccountNumber?.touched && !AccountNumber?.dirty">
+          <span *ngIf="AccountNumber?.invalid && AccountNumber?.touched && !AccountNumber?.dirty">
             this field is required
           </span>
         </div>
@@ -15,7 +16,7 @@
         <div class="mt-4">
           <label class="cust-label">cutomer name</label>
           <input type="text" class="form-control" formControlName="name" />
-          <span *ngIf="name?.invalid && !name?.touched && !name?.dirty">
+          <span *ngIf="name?.invalid && name?.touched && !name?.dirty">
             this field is required
           </span>
         </div>
@@ -96,7 +97,7 @@
         <div class="mt-4">
           <label class="cust-label">Lines Number</label>
           <input type="text" class="form-control" formControlName="LinesNumber" />
-          <span *ngIf="LinesNumber?.invalid && !LinesNumber?.touched && !LinesNumber?.dirty">
+          <span *ngIf="LinesNumber?.invalid && LinesNumber?.touched && !LinesNumber?.dirty">
             this field is required
           </span>
         </div>
@@ -126,9 +127,12 @@
         </div>
       </div>
     </div>
-    <button [disabled]="editCorporateForm?.invalid" type="submit"
-      class="d-inline-block mt-4 text-center btn btn-primary">
-      Add corporate Cutomer
-    </button>
+    <div class="m-auto text-center">
+      <button [disabled]="editCorporateForm?.invalid" type="submit" id="button"
+        class="d-inline-block mt-4 text-center btn btn-primary">
+        update corporate Cutomer
+      </button>
+    </div>
   </form>
+  <p-toast position="bottom-center"></p-toast>
 </div>

@@ -2,11 +2,13 @@ import { AuthService } from './../../_services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
+  providers: [MessageService],
 })
 export class LoginComponent implements OnInit {
   userData: [] = [];
@@ -14,7 +16,11 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   userName!: FormControl;
   password!: FormControl;
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private messageService: MessageService
+  ) {
     this.initFormControl();
     this.createForm();
   }
@@ -48,6 +54,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((user: any) => {
       if (user) {
         this.userData = user;
+        console.log('user', user);
+
         localStorage.setItem('user', JSON.stringify(user.User));
         this.router.navigate(['/']);
       }
@@ -58,4 +66,19 @@ export class LoginComponent implements OnInit {
   // routeToApp() {
   //   this.router.navigate(['/']);
   // }
+
+  UdateUserSuucessFuly() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'you update employee Successfly',
+      detail: 'تم تحديث الموظف بنجاح',
+    });
+  }
+  ErrorInUpdateUser() {
+    this.messageService.add({
+      severity: 'error',
+      summary: '‘User Name Is Already Exist',
+      detail: 'اسم المستخدم موجود بالفعل مسبقا',
+    });
+  }
 }

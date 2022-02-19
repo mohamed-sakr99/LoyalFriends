@@ -1,19 +1,22 @@
+import { MessageService } from 'primeng/api';
 import { CustomersDetailsService } from './../../../services/customers-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-customer-details',
   templateUrl: './edit-customer-details.component.html',
   styleUrls: ['./edit-customer-details.component.css'],
+  providers: [MessageService],
 })
-export class EditCustomerDetailsComponent implements OnInit {
+export class EditCustomerDetailsComponent implements OnInit, OnDestroy {
   serviceProvID: any;
   serviceQotaID: any;
-  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
-  UserRole = JSON.parse(localStorage.getItem('user') || '{}').Role;
+  UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
+  UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   page: any = 1;
   PageLimit: any = 10;
   CustomerType: any = 24;
@@ -30,7 +33,7 @@ export class EditCustomerDetailsComponent implements OnInit {
   GovernateID: any;
   cities: any = [];
   deliverMethod: any = [];
-  createdBy = JSON.parse(localStorage.getItem('user') || '{}').ID;
+  createdBy = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
   tomorrow = new Date(this.todayDate.getTime());
   editCustomer!: FormGroup;
   customerTypeID!: FormControl;
@@ -55,11 +58,15 @@ export class EditCustomerDetailsComponent implements OnInit {
   contactDate!: FormControl;
   Comment!: FormControl;
   CustomerID: any;
+
+  private unsubscribe: Subscription[] = [];
+
   constructor(
     private apiservice: ApiService,
     private cdr: ChangeDetectorRef,
     private route: ActivatedRoute,
-    private customersDetailsService: CustomersDetailsService
+    private customersDetailsService: CustomersDetailsService,
+    private messageService: MessageService
   ) {
     this.initFormControl();
     this.createForm();
@@ -162,8 +169,27 @@ export class EditCustomerDetailsComponent implements OnInit {
         this.CustomerID
       )
       .subscribe((res: any) => {
-        console.log('res', res);
+        if (res.status === 'successfully') {
+          this.editedCutomer();
+        } else {
+          this.ErrorInEditedCustomer();
+        }
       });
+  }
+
+  editedCutomer() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'you modified Customer Successfly',
+      detail: 'تم تعديل عميل بنجاح',
+    });
+  }
+  ErrorInEditedCustomer() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Customer not modifided Yet',
+      detail: 'لم يتم تعديل عميل بعد',
+    });
   }
 
   addInOfferQuota(serviceProvID: any) {
@@ -199,5 +225,9 @@ export class EditCustomerDetailsComponent implements OnInit {
     this.apiservice.GetServiceQuota(value).subscribe((res: any) => {
       this.quota = res.Lookups.ServiceQuota;
     });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 }

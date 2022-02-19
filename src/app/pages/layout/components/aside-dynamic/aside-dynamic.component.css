@@ -4,7 +4,7 @@ mat-toolbar {
 }
 mat-sidenav {
   margin: 16px;
-  width: 260px;
+  width: 245px;
   border-right: none;
   background: #002b5c;
   color: white;
@@ -15,23 +15,20 @@ mat-sidenav {
 .menu-button {
   display: block !important;
   margin-bottom: 5px;
-  color: #37d5d6;
+  color: #37d5d6 !important;
 }
+
 .content {
-  height: calc(100vh - 98px);
+  min-height: -webkit-fill-available;
   border-radius: 10px;
   margin: 16px;
   margin-right: 32px;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  font-size: 2rem;
-  color: #36096d;
-  overflow: scroll !important;
+  font-size: 24px;
+  color: #541e97;
 }
 
 mat-sidenav-container {
-  height: calc(100vh - 65px);
+  height: calc(100vh - 100px);
 }
 .text-left {
   text-align: left !important;
@@ -40,5 +37,9 @@ mat-sidenav-container {
   font-weight: 300;
 }
 mat-divider {
-  color: #eee !important;
+  background-color: rgb(235, 221, 221) !important;
+}
+.active-link {
+  color: #fff;
+  background-color: rgb(255, 88, 88);
 }

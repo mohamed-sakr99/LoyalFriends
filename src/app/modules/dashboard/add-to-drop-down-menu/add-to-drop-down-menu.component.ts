@@ -1,24 +1,26 @@
-import { ActivatedRoute } from '@angular/router';
 import { ApiService } from './../../../services/api.service';
 import { DropDownMenusService } from './../../../services/dashboard/drop-down-menus.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-edit-drop-downs-menu',
-  templateUrl: './edit-drop-downs-menu.component.html',
-  styleUrls: ['./edit-drop-downs-menu.component.css'],
+  selector: 'app-add-to-drop-down-menu',
+  templateUrl: './add-to-drop-down-menu.component.html',
+  styleUrls: ['./add-to-drop-down-menu.component.css'],
+  providers: [MessageService],
 })
-export class EditDropDownsMenuComponent implements OnInit {
+export class AddToDropDownMenuComponent implements OnInit {
   UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
-  LookupID: any;
   serviceProvId: any;
   lookupsCategory: any = [];
   serviceProvider: any = [];
   serviceQuota: any = [];
-  updateLookupForm!: FormGroup;
-  LookupCategoryID!: FormControl;
+  quota: any = [];
+  offers: any = [];
+  LookupForm!: FormGroup;
   Name!: FormControl;
+  LookupCategoryID!: FormControl;
   ServiceProviderID!: FormControl;
   ServiceQuotaID!: FormControl;
   IsActive!: FormControl;
@@ -27,12 +29,11 @@ export class EditDropDownsMenuComponent implements OnInit {
   constructor(
     private dropDownMenusService: DropDownMenusService,
     private apiService: ApiService,
-    private route: ActivatedRoute
+    private messageService: MessageService
   ) {
     this.initFormControl();
     this.createForm();
   }
-
   initFormControl() {
     this.Name = new FormControl('', Validators.required);
     this.LookupCategoryID = new FormControl('', Validators.required);
@@ -41,7 +42,7 @@ export class EditDropDownsMenuComponent implements OnInit {
     this.IsActive = new FormControl(false, [Validators.required]);
   }
   createForm() {
-    this.updateLookupForm = new FormGroup({
+    this.LookupForm = new FormGroup({
       Name: this.Name,
       LookupCategoryID: this.LookupCategoryID,
       ServiceProviderID: this.ServiceProviderID,
@@ -49,31 +50,50 @@ export class EditDropDownsMenuComponent implements OnInit {
       IsActive: this.IsActive,
     });
   }
-
   ngOnInit(): void {
-    this.LookupID = this.route.snapshot.params.id;
     this.getDropDownCategory();
-
+  }
+  onSubmit() {
+    console.log(this.LookupForm.value);
     this.dropDownMenusService
-      .geteditedLookups(this.LookupID)
+      .addLookup(this.LookupForm.value, this.UserID)
       .subscribe((res: any) => {
-        this.updateLookupForm = new FormGroup({
-          Name: new FormControl(res.Lookup['Name']),
-          LookupCategoryID: new FormControl(res.Lookup['LookupCategoryID']),
-          ServiceProviderID: new FormControl(res.Lookup['ServiceProviderID']),
-          ServiceQuotaID: new FormControl(res.Lookup['ServiceQuotaID']),
-          IsActive: new FormControl(res.Lookup['IsActive']),
-        });
+        if ((res.status === 'successfully', res.error == null)) {
+          this.addLookupSuucessFuly();
+        } else if ((res.status === 'successfully', res.error != null)) {
+          this.ErrorInAddeddLookup();
+        } else this.ErrorISfailureInAddLookup(res.error);
       });
   }
 
-  onSubmit() {}
+  addLookupSuucessFuly() {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'you added lookup Successfly',
+      detail: 'تم اضافة الي القائمة بنجاح',
+    });
+  }
+  ErrorInAddeddLookup() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'lookup not allready exist',
+      detail: 'هذا الاسم موجود بالفعل مسبقا  ',
+    });
+  }
+  ErrorISfailureInAddLookup(error: string) {
+    this.messageService.add({
+      severity: 'failure',
+      summary: error,
+    });
+  }
+
   getDropDownCategory() {
     this.dropDownMenusService.getCategoryLookups().subscribe((res: any) => {
       this.lookupsCategory = res.Categories;
       console.log('result', res);
     });
   }
+
   categoryChange(event: any) {
     let value = (event.target as HTMLInputElement)?.value;
     this.serviceProvId = value;
@@ -120,15 +140,14 @@ export class EditDropDownsMenuComponent implements OnInit {
       this.serviceQuota = [];
     }
   }
+
   setValidation(controlName: any) {
-    this.updateLookupForm.controls[controlName].setValidators(
-      Validators.required
-    );
-    this.updateLookupForm.controls[controlName].updateValueAndValidity();
+    this.LookupForm.controls[controlName].setValidators(Validators.required);
+    this.LookupForm.controls[controlName].updateValueAndValidity();
   }
 
   clearValidation(controlName: any) {
-    this.updateLookupForm.controls[controlName].clearValidators();
-    this.updateLookupForm.controls[controlName].updateValueAndValidity();
+    this.LookupForm.controls[controlName].clearValidators();
+    this.LookupForm.controls[controlName].updateValueAndValidity();
   }
 }

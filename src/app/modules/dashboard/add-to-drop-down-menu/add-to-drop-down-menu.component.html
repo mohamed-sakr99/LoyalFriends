@@ -1,5 +1,5 @@
 <div class="main">
-  <form [formGroup]="updateLookupForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="LookupForm" (ngSubmit)="onSubmit()">
     <div class="row justify-content-lg-center">
 
       <div class="col-md-4 col-sm-6 col-12">
@@ -84,7 +84,7 @@
           <mat-slide-toggle formControlName="IsActive"></mat-slide-toggle>
         </div>
       </div>
-      <button [disabled]="updateLookupForm?.invalid" type="submit" class="d-block mt-4 text-center btn btn-primary">
+      <button [disabled]="LookupForm?.invalid" type="submit" class="d-block mt-4 text-center btn btn-primary">
         Add to menu
       </button>
 

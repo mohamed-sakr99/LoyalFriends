@@ -10,7 +10,8 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
   providers: [MessageService],
 })
 export class AddUserComponent implements OnInit {
-  UserID = JSON.parse(localStorage.getItem('user') || '{}').ID;
+  userRoleDropMenu: any = [];
+  UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
   addUserForm!: FormGroup;
   Name!: FormControl;
   Email!: FormControl;
@@ -49,9 +50,15 @@ export class AddUserComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    console.log('UserID', this.UserID);
+    this.getUserRole();
   }
 
+  getUserRole() {
+    this.usersService.getUserDropMenu().subscribe((res: any) => {
+      this.userRoleDropMenu = res.Lookups.UserRole;
+      console.log('res', res.Lookups.UserRole);
+    });
+  }
   onSubmit() {
     this.usersService
       .AddUser(this.addUserForm.value, this.UserID)

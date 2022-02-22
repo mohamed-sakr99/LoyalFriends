@@ -13,7 +13,7 @@ export class AdslCutomerListComponent implements OnInit, OnDestroy {
   UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   CustomerType = 22;
   page = 1;
-  PageLimit = 10;
+  PageLimit = 25;
   totalCount: any;
   SearchText: any;
 
@@ -52,6 +52,10 @@ export class AdslCutomerListComponent implements OnInit, OnDestroy {
     this.getCustomerListForAdsl();
   }
 
+  onClear() {
+    this.SearchText = '';
+    this.getCustomerListForAdsl();
+  }
   ngOnDestroy(): void {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }

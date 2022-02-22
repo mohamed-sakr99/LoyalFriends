@@ -21,6 +21,7 @@ body {
 .cust-span {
   width: 10%;
   flex: 0.5;
+  text-transform: capitalize;
 }
 .form-check-input {
   margin-right: 3.5px;
@@ -28,8 +29,13 @@ body {
   width: 16px !important;
   height: 16px !important;
 }
+/* .p-datatable-scrollable .p-datatable-thead > tr > th {
+  background-color: #f6f8fa !important;
+} */
+
 span {
   font-size: 16px;
+  text-transform: capitalize;
 }
 .main {
   padding: 8px 20px;
@@ -56,7 +62,7 @@ span {
   border: 1px solid #ddd !important;
   background-color: #fff;
   box-shadow: 5px 5px 5px 5px#eee !important;
-  padding: 8px 12px;
+  padding: 9px 12px;
   width: 85%;
 }
 @media (max-widt: 768px) {
@@ -71,6 +77,20 @@ span {
   font-weight: 400;
   margin-bottom: 10px;
   color: #7777;
+}
+.input-group {
+  width: 40% !important;
+}
+.search {
+  padding: 15px 3px !important;
+  box-shadow: none !important;
+  border-right: 0 !important;
+  border-color: #eee;
+  background-color: #eee;
+}
+.input-group .btn {
+  border-left: 0 !important;
+  border-color: #eee;
 }
 /*aside dynamic*/
 /*start language select*/
@@ -92,6 +112,29 @@ span {
   margin-right: 15px;
   font-size: 16px;
   background-color: rgb(124, 163, 196);
+}
+.accordion-button {
+  color: #fff !important;
+  text-transform: capitalize !important;
+}
+
+ul {
+  list-style: none;
+  padding: 0 !important;
+}
+li {
+  padding: 0 !important;
+}
+.accordion-item,
+.accordion-button,
+.accordion-body {
+  background-color: transparent !important ;
+  padding: 0 !important;
+  margin: 0;
+  border: 0 !important;
+}
+.accordion-button:focus {
+  box-shadow: none !important;
 }
 /*end add customer*/
 

@@ -3,14 +3,16 @@ mat-toolbar {
   background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
 }
 mat-sidenav {
+  padding-top: 50px !important;
   margin: 16px;
-  width: 245px;
+  width: 250px !important;
   border-right: none;
   background: #002b5c;
   color: white;
   border-radius: 10px;
   padding: 16px;
   text-align: center;
+  overflow: hidden !important;
 }
 .menu-button {
   display: block !important;
@@ -40,6 +42,5 @@ mat-divider {
   background-color: rgb(235, 221, 221) !important;
 }
 .active-link {
-  color: #fff;
-  background-color: rgb(255, 88, 88);
+  color: #fff !important;
 }

@@ -50,6 +50,10 @@ export class CorpCustomerListComponent implements OnInit, OnDestroy {
     this.getCustomerForCorporate();
   }
 
+  onClear() {
+    this.SearchText = '';
+    this.getCustomerForCorporate();
+  }
   ngOnDestroy(): void {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }

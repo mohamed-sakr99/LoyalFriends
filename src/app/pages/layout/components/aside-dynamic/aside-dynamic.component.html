@@ -15,9 +15,6 @@
   <span class="copmany-name" style="color: #fff; font-size:12px;">
     LOYAL FRIENDS
   </span>
-  <!-- <span>
-    <app-language-select></app-language-select>
-  </span> -->
   <span>
     <button class="btn btn-primary" (click)="logout()">logout</button>
   </span>
@@ -26,45 +23,99 @@
 <mat-sidenav-container>
 
   <mat-sidenav class="mat-elevation-z8" #sidenav="matSidenav" hasBackdrop="false" mode="side">
-    <mat-divider></mat-divider>
-    <div class="text-left mt-2">reports</div>
-    <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="/reports/total-reports" routerLinkActive="active-link"
-      [routerLinkActiveOptions]="{exact: true}">
-      total reports
-    </button>
-    <button mat-button class="menu-button" routerLink="/reports/part-reports">
-      partial reports
-    </button>
-    <mat-divider></mat-divider>
-    <div class="text-left mt-2">adsl & fixed line</div>
-    <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="/adsl-fixed/add" routerLinkActive="active-link">
-      add customer
-    </button>
-    <button mat-button class="menu-button" routerLink="/adsl-fixed/adsl-cust-list" routerLinkActive="active-link">
-      adsl customer list
-    </button>
-    <button mat-button class="menu-button" routerLink="/adsl-fixed/fixed-cust-list" routerLinkActive="active-link">
-      fixed customer list
-    </button>
-    <button mat-button class="menu-button" routerLink="/adsl-fixed/adsl-fixed-cust-list" routerLinkActive="active-link">
-      adsl & fixed customer list
-    </button>
-    <mat-divider></mat-divider>
-    <div class="text-left mt-2">corporate </div>
-    <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="/corp-cust/add-corp-cust" routerLinkActive="active-link">
-      add corporate customer
-    </button>
-    <button mat-button class="menu-button" routerLink="/corp-cust/corp-cust-list" routerLinkActive="active-link">
-      corporate customer list
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-button class="menu-button" routerLink="/dashboard" routerLinkActive="active-link">
-      Dashboard
-    </button>
-    <mat-divider></mat-divider>
+
+    <div class="accordion accordion-flush " id="accordionFlushExample">
+      <div class="accordion-item mt-3">
+        <h2 class="accordion-header" id="flush-headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+            dashboard & reports
+          </button>
+        </h2>
+        <ul id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+          data-bs-parent="#accordionFlushExample">
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/dashboard" routerLinkActive="active-link">
+              Dashboard
+            </button>
+          </li>
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/reports/total-reports" routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{exact: true}">
+              total reports
+            </button>
+          </li>
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/reports/part-reports">
+              partial reports
+            </button>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="accordion-item mt-3">
+        <h2 class="accordion-header" id="flush-headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+            adsl & fixed
+          </button>
+        </h2>
+        <ul id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+          data-bs-parent="#accordionFlushExample">
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/adsl-fixed/add" routerLinkActive="active-link">
+              add customer
+            </button>
+          </li>
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/adsl-fixed/adsl-cust-list"
+              routerLinkActive="active-link">
+              adsl customer list
+            </button>
+          </li>
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/adsl-fixed/fixed-cust-list"
+              routerLinkActive="active-link">
+              fixed customer list
+            </button>
+          </li>
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/adsl-fixed/adsl-fixed-cust-list"
+              routerLinkActive="active-link">
+              adsl & fixed customer list
+            </button>
+          </li>
+        </ul>
+      </div>
+
+
+      <div class="accordion-item mt-3">
+        <h2 class="accordion-header" id="flush-headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+            corporate
+          </button>
+        </h2>
+        <ul id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+          data-bs-parent="#accordionFlushExample">
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/corp-cust/add-corp-cust" routerLinkActive="active-link">
+              add corporate customer
+            </button>
+          </li>
+          <li class="accordion-body">
+            <button mat-button class="menu-button" routerLink="/corp-cust/corp-cust-list"
+              routerLinkActive="active-link">
+              corporate customer list
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="content mat-elevation-z8">

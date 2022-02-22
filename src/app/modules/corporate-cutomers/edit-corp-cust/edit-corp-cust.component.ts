@@ -16,7 +16,7 @@ export class EditCorpCustComponent implements OnInit, OnDestroy {
   UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
   UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   page: any = 1;
-  PageLimit: any = 10;
+  PageLimit: any = 25;
   AccountType: any = [];
   customerStatus: any = [];
   RequestTypes: any = [];

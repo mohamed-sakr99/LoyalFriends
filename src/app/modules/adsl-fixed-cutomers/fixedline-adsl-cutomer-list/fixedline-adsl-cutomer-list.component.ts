@@ -12,7 +12,7 @@ export class FixedlineAdslCutomerListComponent implements OnInit, OnDestroy {
   UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
   UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   page: any = 1;
-  PageLimit: any = 1;
+  PageLimit: any = 25;
   CustomerType: any = 24;
   totalCount: any;
   SearchText: any;
@@ -48,6 +48,13 @@ export class FixedlineAdslCutomerListComponent implements OnInit, OnDestroy {
     this.getAdslAndFixedLineCustomerList();
   }
 
+  onSearch() {
+    this.getAdslAndFixedLineCustomerList();
+  }
+  onClear() {
+    this.SearchText = '';
+    this.getAdslAndFixedLineCustomerList();
+  }
   ngOnDestroy(): void {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }

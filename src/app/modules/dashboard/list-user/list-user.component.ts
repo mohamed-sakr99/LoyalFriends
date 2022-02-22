@@ -13,7 +13,7 @@ export class ListUserComponent implements OnInit {
   UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
   userList: any = [];
   page: any = 1;
-  PageLimit: any = 1;
+  PageLimit: any = 25;
   totalCount: any;
   SearchText: any;
   constructor(

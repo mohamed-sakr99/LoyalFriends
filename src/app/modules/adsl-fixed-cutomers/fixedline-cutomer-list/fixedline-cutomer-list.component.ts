@@ -13,7 +13,7 @@ export class FixedlineCutomerListComponent implements OnInit, OnDestroy {
   UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   CustomerType = 23;
   page: any = 1;
-  PageLimit: any = 1;
+  PageLimit: any = 20;
   totalCount: any;
   SearchText: any;
 
@@ -49,6 +49,14 @@ export class FixedlineCutomerListComponent implements OnInit, OnDestroy {
     this.getFixedLineCustomerList();
   }
 
+  onSearch() {
+    this.getFixedLineCustomerList();
+  }
+
+  onClear() {
+    this.SearchText = '';
+    this.getFixedLineCustomerList();
+  }
   ngOnDestroy(): void {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }

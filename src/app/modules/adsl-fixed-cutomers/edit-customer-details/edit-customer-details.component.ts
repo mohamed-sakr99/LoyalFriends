@@ -18,7 +18,7 @@ export class EditCustomerDetailsComponent implements OnInit, OnDestroy {
   UserID = JSON.parse(localStorage.getItem('user') || '{}')?.ID;
   UserRole = JSON.parse(localStorage.getItem('user') || '{}')?.Role;
   page: any = 1;
-  PageLimit: any = 10;
+  PageLimit: any = 25;
   CustomerType: any = 24;
   totalCount: any;
   governorate: any = [];
